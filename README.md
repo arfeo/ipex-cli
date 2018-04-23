@@ -24,3 +24,7 @@ Then:
 ```
 $ go run ipex.go
 ```
+
+## Powered by
+
+* [xmlquery](https://github.com/antchfx/xmlquery) (MIT)
