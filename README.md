@@ -1,7 +1,6 @@
 # ipex-cli
-iTunes Playlists Exporter (CLI) for `macOS` and `Windows`.
 
-GUI version (`macOS` only): https://github.com/arfeo/ipex
+iTunes Playlists Exporter (CLI) for `macOS` and `Windows`.
 
 ## Installation
 
