@@ -1,2 +1,4 @@
 .idea
 ipex
+
+go_build_ipex_cli

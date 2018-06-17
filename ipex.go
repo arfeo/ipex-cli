@@ -47,10 +47,10 @@ func main() {
 		fmt.Println("Searching for iTunes Media Library XML in:", iml_file, "...", func () string {
 			if FileExists(iml_file) {
 				xml_found = true
-				return "found."
+				return "\033[32mfound.\033[0m"
 			} else {
 				xml_found = false
-				return "not found."
+				return "\033[31mnot found.\033[0m"
 			}
 		}())
 
@@ -76,7 +76,7 @@ func main() {
 			// Create import directory
 			if !FileExists(import_dir) {
 				if err := os.Mkdir(import_dir, 0777); err != nil {
-					fmt.Println("Cannot create directory.")
+					fmt.Println("\033[31mCannot create directory.\033[0m")
 					goto CREATE_IMPORT_DIR
 				}
 			}
@@ -97,7 +97,7 @@ func main() {
 					playlists[i] = p
 				}
 			} else {
-				log.Fatal("No playlists found.")
+				log.Fatal("\033[33mNo playlists found.\033[0m")
 			}
 
 		GET_PLAYLIST:
@@ -109,7 +109,7 @@ func main() {
 			if _, ok := playlists[curr_playlist - 1]; ok {
 				fmt.Println("Playlist selected:", playlists[curr_playlist-1])
 			} else {
-				fmt.Println("Wrong playlist number.")
+				fmt.Println("\033[31mWrong playlist number.\033[0m")
 				goto GET_PLAYLIST
 			}
 
@@ -141,7 +141,7 @@ func main() {
 
 					// Copy files to the import directory
 					if CopyFile(t, import_dir+"/"+b[len(b)-3]+"/"+b[len(b)-2]+"/"+b[len(b)-1]) {
-						fmt.Println("Copied successfully:", t)
+						fmt.Println("\033[32mCopied successfully:\033[0m", t)
 						files_copied++
 					} else {
 						error_count++
@@ -154,7 +154,7 @@ func main() {
 				// ... then exit normally
 				defer fmt.Println("Done.", len(nodeTracks), "tracks in '"+playlists[curr_playlist-1]+"' playlist.", files_copied, "files copied.", error_count, "errors.")
 			} else {
-				fmt.Println("Playlist is empty.")
+				fmt.Println("\033[33mPlaylist is empty.\033[0m")
 				goto GET_PLAYLIST
 			}
 
@@ -166,7 +166,7 @@ func main() {
 		}
 
 	} else {
-		log.Fatal("Unsupported operating system.")
+		log.Fatal("\033[31mUnsupported operating system.\033[0m")
 	}
 
 }
